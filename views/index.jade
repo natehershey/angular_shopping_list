@@ -1,0 +1,22 @@
+extends layout
+
+block head
+  link(rel='stylesheet' href='/javascripts/vendor/bootstrap-css/css/bootstrap.css')
+  script(type='text/javascript' src='/javascripts/controllers/ShoppingListController.js')
+
+block content
+  div.container(ng-controller="ShoppingListController" ng-init="setShoppingLists( #{JSON.stringify(lists)} )")
+    h1 {{title}}
+    h2 Choose a list:
+    div
+      ul
+        div.row.shopping-list(ng-repeat="list in shoppingLists")
+          li
+            div.span9
+              {{list.description}}
+            ul(ng-repeat="category in list.categories")
+              li
+                {{category.name}}
+                ul(ng-repeat="item in category.items")
+                  {{item}}
+
