@@ -3,44 +3,33 @@
  * GET home page.
  */
 
-exports.index = function(req, res){
-  res.render('index', {
-    title: 'Shopping Lists',
-    lists : [
-      { description : "Groceries",
-        categories : [
-          { name : "produce",
-            items : [
-              "spinach",
-              "apples",
-              "bananas"
-            ]
-          },
-          { name : "dairy",
-            items : [
-              "eggs",
-              "sandwich cheese",
-              "yogurt"
-            ],
-          },
-          { name : "grains",
-            items : [
-              "sandwich bread",
-              "italian bread"
-            ]
-          }
-        ]
-      },
-      { description : "Household",
-        categories : [
-          { name: "stuff",
-            items : [
-              "batteries (LR44)",
-              "windex"
-            ]
-          }
-        ]
+exports.index = function(lists) {
+  return function(req, res){
+    res.render('index', {
+      title: 'Shopping Lists',
+      lists : lists
+    });
+  };
+};
+
+exports.addList = function(lists) {
+  return function(req, res) {
+    lists.push(req.body);
+    res.json({ lists : lists });
+  };
+};
+
+exports.deleteList = function(lists) {
+  return function(req, res) {
+    var id = req.body.id,
+        i=0;
+    console.log("looking for list '" + id + "'' to delete");
+    for (i; i<lists.length; i++) {
+      if(lists[i].description == id) {
+        console.log("Found it");
+        lists.splice(i,1);
       }
-    ]
-  });
+    }
+    res.json({ lists : lists });
+  };
 };

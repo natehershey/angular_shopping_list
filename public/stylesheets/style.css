@@ -3,6 +3,33 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+a { color: #00B7FF; }
+
+.shopping-list-block {
+  width: auto;
+  height: auto;
+  background-color: orange;
+  border:2px solid;
+  border-radius:25px;
+  max-width: 200px;
+  max-height: 200px;
+  padding: 10px;
+  overflow: auto;
+}
+
+ul.shopping-lists,
+ul.shopping-list-categories,
+ul.shopping-list-items {
+  list-style-type: none;
+}
+
+ul.shopping-lists .shopping-list-description {
+  font-size: 1em;
+}
+.shopping-list-description {
+  font-size: 2em;
+}
+
+.shopping-list-description > a {
+  padding-left: 10px;
 }

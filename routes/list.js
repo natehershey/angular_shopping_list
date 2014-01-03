@@ -3,6 +3,10 @@
  * GET users listing.
  */
 
-exports.list = function(req, res){
-  res.send("Shopping list:");
+exports.show = function(lists) {
+  return function(req, res){
+    debugger;
+    console.log("request: " + req);
+    res.send("respond with a resource");
+  };
 };

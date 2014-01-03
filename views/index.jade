@@ -6,17 +6,33 @@ block head
 
 block content
   div.container(ng-controller="ShoppingListController" ng-init="setShoppingLists( #{JSON.stringify(lists)} )")
-    h1 {{title}}
-    h2 Choose a list:
-    div
-      ul
-        div.row.shopping-list(ng-repeat="list in shoppingLists")
-          li
-            div.span9
-              {{list.description}}
-            ul(ng-repeat="category in list.categories")
-              li
-                {{category.name}}
-                ul(ng-repeat="item in category.items")
-                  {{item}}
 
+    div.well(ng-show="currentShoppingList.description == ''")
+      h2 Choose a list:
+        ul.shopping-lists
+          li.shopping-list(ng-repeat="list in shoppingLists")
+            div.shopping-list-block(ng-click="showShoppingList(list.description)")
+              span.shopping-list-description
+                {{list.description}}
+      h2 Add New
+      form(novalidate, ng-submit="addNewShoppingList()")
+        textarea( ng-model="newShoppingList.description",
+                  placeholder="Description")
+        br
+        button.btn.btn-primary(type="submit") Add Todo
+
+
+    div.well(ng-show="currentShoppingList.description != ''")
+      span.shopping-list-description
+        {{currentShoppingList.description}}
+        a.delete-list-icon
+          i.fa.fa-trash-o(ng-click="deleteShoppingList(currentShoppingList.description)")
+        a.edit-list-icon
+          i.fa.fa-pencil-square-o(ng-click="editShoppingList(currentShoppingList.description)")
+      span.shopping-list-items-container
+        ul.shopping-list-categories
+          li.shopping-list-category(ng-repeat="category in currentShoppingList.categories")
+            {{category.name}}
+            ul.shopping-list-items(ng-repeat="item in category.items")
+              li.shopping-list-item
+                {{item}}

@@ -5,7 +5,7 @@
 describe('Shopping lists', function() {
   beforeEach(function() {
     browser().navigateTo('/');
-    sleep(1);
+    sleep(.5);
   });
 
   it("should list the available shopping lists and their categories", function() {
