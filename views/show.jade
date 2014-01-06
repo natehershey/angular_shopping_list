@@ -1,0 +1,40 @@
+extends layout
+
+block head
+  link(rel='stylesheet' href='/javascripts/vendor/bootstrap-css/css/bootstrap.css')
+  script(type='text/javascript' src='/javascripts/controllers/ShoppingListController.js')
+
+block content
+  div.container(ng-controller="ShoppingListController" ng-init="setCurrentList('#{locals.shoppingList}')")
+    span.shopping-list-categories-container
+      ul.shopping-list-categories
+        li.shopping-list-category(ng-repeat="category in currentShoppingList.categories") {{category.description}}
+          span.delete-category-section
+            a.delete-category-icon
+              i.fa.fa-trash-o(ng-click="deleteCategory(category.description)")
+          span.change-category-description-section
+            a.change-category-description-icon
+              i.fa.fa-pencil-square-o(ng-click="toggleChangeCategoryNameField(category.description)")
+            span.change-description-input(ng-show="showChangeCategoryName && currentCategory === category.description")
+              input(ng-model="updatedCategoryName")
+              button.btn.btn-primary(ng-click="changeCategoryName()") +
+          span.add-item-section
+            a.add-item-icon
+              i.fa.fa-plus-circle(ng-click="toggleAddItemField(category.description)")
+            span.add-item-input(ng-show="showAddItem && currentCategory === category.description")
+              input(ng-model="newItemName")
+              button.btn.btn-primary(ng-click="addItem(newItemName)") +
+          span.category-items-section
+            ul.shopping-list-category-items(ng-repeat="item in category.items")
+              li.shopping-list-category-item {{item.description}}
+                span.delete-item-section
+                  a.delete-item-icon
+                    i.fa.fa-trash-o(ng-click="deleteItem(category.description, item.description)")
+                span.change-item-description-section
+                  a.change-item-description-icon
+                    i.fa.fa-pencil-square-o(ng-click="toggleChangeItemNameField(item.description)")
+                  span.add-item-input(ng-show="showAddItem && currentItem === item.description")
+                    input(ng-model="newItemName")
+                    button.btn.btn-primary(ng-click="addItem(newItemName)") +
+
+

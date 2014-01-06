@@ -19,7 +19,7 @@ a { color: #00B7FF; }
 
 ul.shopping-lists,
 ul.shopping-list-categories,
-ul.shopping-list-items {
+ul.shopping-list-category-items {
   list-style-type: none;
 }
 
@@ -32,4 +32,34 @@ ul.shopping-lists .shopping-list-description {
 
 .shopping-list-description > a {
   padding-left: 10px;
+}
+
+.shopping-list-category {
+  font-size: 1.6em;
+}
+
+li.shopping-list-category {
+  font-size: 1.5em;
+}
+
+li.shopping-list-category-item {
+  font-size: 1em;
+}
+
+span.icon-action-section {
+  padding-left: .5em;
+}
+
+@media screen and (max-width: 320px) {
+  .shopping-list-block {
+    width: 40%;
+    height: auto;
+    background-color: orange;
+    border:2px solid;
+    border-radius:25px;
+    max-width: 200px;
+    max-height: 200px;
+    padding: 10px;
+    overflow: auto;
+  }
 }

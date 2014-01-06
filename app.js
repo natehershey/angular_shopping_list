@@ -4,15 +4,25 @@
  */
 
 var express = require('express');
-var routes = require('./routes');
-var list = require('./routes/list');
+var routes = require('./routes/index');
+var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
+var schemas = require('./models/ShoppingList.js');
 
 var app = express();
 
 var Mongoose = require('mongoose');
-var db = Mongoose.createConnection('localhost', 'mytestapp');
+var db = Mongoose.createConnection('localhost', 'wutchuneed-dev');
+//var db = Mongoose.createConnection('mongodb://wutchuneed:TurtleFace@linus.mongohq.com:10077/wutchuneed-dev');
+
+var ItemSchema = schemas.ItemSchema;
+var CategorySchema = schemas.CategorySchema;
+var ShoppingListSchema = schemas.ShoppingListSchema;
+
+var Item = db.model('Item', ItemSchema);
+var Category = db.model('Category', CategorySchema);
+var ShoppingList = db.model('ShoppingList', ShoppingListSchema);
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -25,56 +35,70 @@ app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.bodyParser());
 
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-var lists = [
-  { description : "Groceries",
-    categories : [
-      { name : "produce",
-        items : [
-          "spinach",
-          "apples",
-          "bananas"
-        ]
-      },
-      { name : "dairy",
-        items : [
-          "eggs",
-          "sandwich cheese",
-          "yogurt"
-        ],
-      },
-      { name : "grains",
-        items : [
-          "sandwich bread",
-          "italian bread"
-        ]
-      }
-    ]
-  },
-  { description : "Household",
-    categories : [
-      { name: "stuff",
-        items : [
-          "batteries (LR44)",
-          "windex"
-        ]
-      }
-    ]
-  }
-]
+// var lists = [
+//   { description : "Groceries",
+//     categories : [
+//       { description : "produce",
+//         items : [
+//           "spinach",
+//           "apples",
+//           "bananas"
+//         ]
+//       },
+//       { description : "dairy",
+//         items : [
+//           "eggs",
+//           "sandwich cheese",
+//           "yogurt"
+//         ],
+//       },
+//       { description : "grains",
+//         items : [
+//           "sandwich bread",
+//           "italian bread"
+//         ]
+//       }
+//     ]
+//   },
+//   { description : "Household",
+//     categories : [
+//       { description: "stuff",
+//         items : [
+//           "batteries (LR44)",
+//           "windex"
+//         ]
+//       }
+//     ]
+//   }
+// ]
 
-app.get('/', routes.index(lists));
-app.get('/lists', routes.index(lists));
-app.get('/list', list.show(lists));
+app.get('/', routes.index(ShoppingList));
+app.get('/users', user.list);
+app.get('/shopping_lists', routes.getLists(ShoppingList));
 
-app.post('/add_list.json', routes.addList(lists));
-app.post('/delete_list.json', routes.deleteList(lists));
+app.get('/shopping_list/:id', routes.showList(ShoppingList));
+
+app.put('/shopping_list/:id', routes.updateList(ShoppingList));
+
+app.post('/shopping_list', routes.addList(ShoppingList));
+app.post('/shopping_list/:id/delete', routes.deleteList(ShoppingList));
+
+app.post('/item/:id/delete', routes.deleteItem(ShoppingList));
+app.post('/category/:id/delete', routes.deleteCategory(ShoppingList));
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
+
+
+
+
+
+
