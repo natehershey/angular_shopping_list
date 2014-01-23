@@ -5,7 +5,7 @@ block head
   script(type='text/javascript' src='/javascripts/controllers/ShoppingListController.js')
 
 block content
-  div.container(ng-controller="ShoppingListController" ng-init="setShoppingLists( #{JSON.stringify(shoppingLists)} )")
+  div.wutchuneed(ng-controller="ShoppingListController" ng-init="setShoppingLists( #{JSON.stringify(shoppingLists)} )")
 
     div.well#shopping-lists-index(ng-show="currentShoppingList == undefined")
       h2.list-view-title Choose a list:

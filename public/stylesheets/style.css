@@ -16,12 +16,13 @@ h2.list-view-title {
 #shopping-lists-container {
   display: inline;
   height: 100%;
+  width: auto;
 }
 
 .shopping-list-block {
   top:50%;
-  width: 10em;
-  height: 10em;
+  width: 40%;
+  height: 200px;
   margin-top: -5em;
   position: relative;
   margin: 5px;
@@ -102,25 +103,34 @@ span.icon-action-section {
   opacity: 0.20;
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-device-width: 320px) {
+  html {
+    width: 320px;
+  }
   body {
+    width: 320px;
     padding: 5px;
+  }
+  #shopping-lists-container {
+    display: block;
+    width: 320px;
   }
   #shopping-lists-index {
     width: 600px;
   }
   .shopping-list-block {
-    font-size: 1em;
-    width: 40%;
-    height: 10em;
+    font-size: 1.6rem;
+    font-weight: 700;
+    width: 46%;
+    height: 100px;
   }
   #shopping-list-details {
     width: 100%;
     font-size: 3em;
     padding: 5px;
   }
-  .shopping-list-description {
-    font-size: 6.4rem;
+  .list-description {
+    /*font-size: 6.4rem;*/
   }
   li.shopping-list-category {
     font-size: 4.8rem;
