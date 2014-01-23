@@ -11,6 +11,7 @@ exports.ItemSchema = ItemSchema;
 
 var CategorySchema = new Mongoose.Schema({
   description : {type : String, required : true },
+  empty : Boolean,
   items : [ItemSchema]
 });
 

@@ -90,7 +90,8 @@ function ShoppingListController($scope, $http) {
         $scope.shoppingLists = data.shoppingLists;
       }
     });
-  }
+  };
+
   $scope.changeListName = function() {
     if($scope.newListName) {
       $scope.currentShoppingList.description = $scope.newListName;
@@ -111,6 +112,8 @@ function ShoppingListController($scope, $http) {
     if ($scope.newCategoryName != "") {
       $scope.currentShoppingList.categories.push({
         description : $scope.newCategoryName,
+        empty : true,
+        hideChildren : false,
         items : []
       });
       $scope.updateShoppingList($scope.currentShoppingList);
@@ -130,10 +133,26 @@ function ShoppingListController($scope, $http) {
       alert("Gotta have a name");
   };
 
+  $scope.updateCategoryStatus = function(category) {
+    for(var i = 0; i<category.items.length; i++) {
+      if (category.items[i].status === "needed") {
+        category.empty = false;
+        return;
+      }
+    }
+    category.empty = true;
+    category.hideChildren = true;
+  };
+
+  $scope.toggleHideChildren = function(category) {
+    category.hideChildren = !(category.hideChildren);
+  };
+
   $scope.deleteItem = function(category, item) {
     $http.post('/item/' + item._id + '/delete', {listId : $scope.currentShoppingList._id, categoryId : category._id}).success(function(data) {
       $scope.currentShoppingList = data.shoppingList;
       $scope.getShoppingLists();
+      $scope.updateCategoryStatus(category);
     });
   };
 
@@ -145,11 +164,24 @@ function ShoppingListController($scope, $http) {
         measure : "",
         status : "needed"
       });
+      $scope.currentCategory.hideChildren = false;
       $scope.updateShoppingList($scope.currentShoppingList);
       $scope.showAddItem = false;
+      $scope.updateCategoryStatus(category);
     } else {
       alert("gotta have a name");
     }
+  };
+
+  $scope.cycleItemStatus = function(item, category) {
+    var statusList = ["needed", "in-cart", "purchased"];
+    if (item.status === "needed") {
+      item.status = "in-cart";
+    }
+    else {
+      item.status = "needed";
+    }
+    $scope.updateCategoryStatus(category);
   };
 
   $scope.changeItemName = function() {
@@ -198,7 +230,7 @@ function ShoppingListController($scope, $http) {
 
   $scope.findCurrentCategoryIndex = function() {
     return $scope.findCategoryIndexByName($scope.currentCategory);
-  }
+  };
 
   $scope.findCategoryIndexByName = function(name) {
     var theName,

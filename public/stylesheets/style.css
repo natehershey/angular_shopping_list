@@ -5,16 +5,43 @@ body {
 
 a { color: #00B7FF; }
 
+a.back-button-icon {
+  font-size: 4rem;
+}
+
+h2.list-view-title {
+  width: 100%;
+}
+
+#shopping-lists-container {
+  display: inline;
+  height: 100%;
+}
+
 .shopping-list-block {
-  width: auto;
-  height: auto;
+  top:50%;
+  width: 10em;
+  height: 10em;
+  margin-top: -5em;
+  position: relative;
+  margin: 5px;
+  display: inline-block;
   background-color: orange;
   border:2px solid;
   border-radius:25px;
-  max-width: 200px;
-  max-height: 200px;
   padding: 10px;
   overflow: auto;
+  font-size: 2em;
+}
+span.list-description {
+  position:absolute;
+  top:50%;
+  left: 0;
+  margin-top:-.5em;
+  width: 10em;
+  height:10em;
+  vertical-align: middle;
+  text-align: center;
 }
 
 ul.shopping-lists,
@@ -23,43 +50,83 @@ ul.shopping-list-category-items {
   list-style-type: none;
 }
 
-ul.shopping-lists .shopping-list-description {
-  font-size: 1em;
+.main-shopping-list-description {
+  font-size: 3.2rem;
+}
+
+div.well.shopping-list-details {
+  /*background-color: pink;*/
 }
 .shopping-list-description {
-  font-size: 2em;
+  font-size: 3.2rem;
 }
 
 .shopping-list-description > a {
   padding-left: 10px;
 }
 
-.shopping-list-category {
-  font-size: 1.6em;
+li.shopping-list-category {
+  font-size: 2.4rem;
+  /*background-color: lightgreen;*/
 }
 
-li.shopping-list-category {
-  font-size: 1.5em;
+li.shopping-list-category.empty {
+  font-size: 2.4rem;
+  opacity: 0.3;
+  text-decoration: line-through;
+}
+
+li.shopping-list-category.hide-children li{
+  display: none;
 }
 
 li.shopping-list-category-item {
-  font-size: 1em;
+  font-size: 1.8rem;
 }
 
 span.icon-action-section {
-  padding-left: .5em;
+  padding-left: .5rem;
 }
 
-@media screen and (max-width: 320px) {
+.shopping-list-category-item.needed {
+  text-decoration: none;
+}
+
+.shopping-list-category-item.in-cart {
+  text-decoration: line-through;
+  opacity: 0.50;
+}
+
+.shopping-list-category-item.purchased {
+  text-decoration: line-through;
+  opacity: 0.20;
+}
+
+@media screen and (max-width: 640px) {
+  body {
+    padding: 5px;
+  }
+  #shopping-lists-index {
+    width: 600px;
+  }
   .shopping-list-block {
+    font-size: 1em;
     width: 40%;
-    height: auto;
-    background-color: orange;
-    border:2px solid;
-    border-radius:25px;
-    max-width: 200px;
-    max-height: 200px;
-    padding: 10px;
-    overflow: auto;
+    height: 10em;
+  }
+  #shopping-list-details {
+    width: 100%;
+    font-size: 3em;
+    padding: 5px;
+  }
+  .shopping-list-description {
+    font-size: 6.4rem;
+  }
+  li.shopping-list-category {
+    font-size: 4.8rem;
+    /*background-color: lightgreen;*/
+  }
+  li.shopping-list-category-item {
+    font-size: 3.6rem;
   }
 }

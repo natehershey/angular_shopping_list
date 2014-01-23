@@ -7,12 +7,12 @@ block head
 block content
   div.container(ng-controller="ShoppingListController" ng-init="setShoppingLists( #{JSON.stringify(shoppingLists)} )")
 
-    div.well(ng-show="currentShoppingList == undefined")
-      h2 Choose a list:
-        ul.shopping-lists
-          li.shopping-list(ng-repeat="list in shoppingLists")
-            div.shopping-list-block(ng-click="showShoppingList(list._id)")
-              span.shopping-list-description {{list.description}}
+    div.well#shopping-lists-index(ng-show="currentShoppingList == undefined")
+      h2.list-view-title Choose a list:
+      div.shopping-lists#shopping-lists-container
+        div.shopping-list-block(ng-repeat="list in shoppingLists" ng-click="showShoppingList(list._id)")
+          span.list-description
+            {{list.description}}
       h2 Add New
       form(novalidate, ng-submit="addNewShoppingList()")
         textarea( ng-model="newShoppingList.description",
@@ -21,7 +21,11 @@ block content
         button.btn.btn-primary(type="submit") Add List
 
 
-    div.well(ng-show="currentShoppingList != undefined")
+    div.well#shopping-list-details(ng-show="currentShoppingList != undefined")
+      div.back-button-section.icon-action-section
+        a.back-button-icon
+          i.fa.fa-arrow-circle-left(ng-click="clearCurrentList()")
+
       span.shopping-list-description {{currentShoppingList.description}}
         span.delete-list-section.icon-action-section
           a.delete-list-icon
@@ -39,35 +43,37 @@ block content
             input(ng-model="newCategoryName")
             button.btn.btn-primary(ng-click="addCategory()") +
 
-      span.shopping-list-categories-container
-        ul.shopping-list-categories
-          li.shopping-list-category(ng-repeat="category in currentShoppingList.categories") {{category.description}}
-            span.delete-category-section.icon-action-section
-              a.delete-category-icon
-                i.fa.fa-trash-o(ng-click="deleteCategory(category)")
-            span.change-category-name-section.icon-action-section
-              a.change-category-name-icon
-                i.fa.fa-pencil-square-o(ng-click="toggleChangeCategoryNameField(category)")
-              span.change-category-name-input(ng-show="showChangeCategoryName && currentCategory._id === category._id")
-                input(ng-model="currentCategory.newName")
-                button.btn.btn-primary(ng-click="changeCategoryName()") +
-            span.add-item-section.icon-action-section
-              a.add-item-icon
-                i.fa.fa-plus-circle(ng-click="toggleAddItemField(category)")
-              span.add-item-input(ng-show="showAddItem && currentCategory._id === category._id")
-                input(ng-model="newItemName")
-                button.btn.btn-primary(ng-click="addItem(newItemName)") +
-            span.category-items-section
-              ul.shopping-list-category-items(ng-repeat="item in category.items")
-                li.shopping-list-category-item {{item.description}}
-                  span.delete-item-section.icon-action-section
-                    a.delete-item-icon
-                      i.fa.fa-trash-o(ng-click="deleteItem(category, item)")
-                  span.change-item-name-section.icon-action-section
-                    a.change-item-name-icon
-                      i.fa.fa-pencil-square-o(ng-click="toggleChangeItemNameField(item)")
-                    span.change-item-name-input(ng-show="showChangeItemName && currentItem._id === item._id")
-                      input(ng-model="currentItem.newName")
-                      button.btn.btn-primary(ng-click="changeItemName()") +
+        span.shopping-list-categories-container
+          ul.shopping-list-categories
+            li.shopping-list-category(ng-repeat="category in currentShoppingList.categories" ng-class="{empty: category.empty, 'hide-children': category.hideChildren}")
+              span.category-name(ng-click="toggleHideChildren(category)")
+                {{category.description}}
+              span.delete-category-section.icon-action-section
+                a.delete-category-icon
+                  i.fa.fa-trash-o(ng-click="deleteCategory(category)")
+              span.change-category-name-section.icon-action-section
+                a.change-category-name-icon
+                  i.fa.fa-pencil-square-o(ng-click="toggleChangeCategoryNameField(category)")
+                span.change-category-name-input(ng-show="showChangeCategoryName && currentCategory._id === category._id")
+                  input(ng-model="currentCategory.newName")
+                  button.btn.btn-primary(ng-click="changeCategoryName()") +
+              span.add-item-section.icon-action-section
+                a.add-item-icon
+                  i.fa.fa-plus-circle(ng-click="toggleAddItemField(category)")
+                span.add-item-input(ng-show="showAddItem && currentCategory._id === category._id")
+                  input(ng-model="newItemName")
+                  button.btn.btn-primary(ng-click="addItem(newItemName)") +
+              span.category-items-section
+                ul.shopping-list-category-items
+                  li.shopping-list-category-item(ng-repeat="item in category.items" ng-click="cycleItemStatus(item, category)" ng-class="item.status") {{item.description}}
+                    span.delete-item-section.icon-action-section
+                      a.delete-item-icon
+                        i.fa.fa-trash-o(ng-click="deleteItem(category, item)")
+                    span.change-item-name-section.icon-action-section
+                      a.change-item-name-icon
+                        i.fa.fa-pencil-square-o(ng-click="toggleChangeItemNameField(item)")
+                      span.change-item-name-input(ng-show="showChangeItemName && currentItem._id === item._id")
+                        input(ng-model="currentItem.newName")
+                        button.btn.btn-primary(ng-click="changeItemName()") +
 
 
