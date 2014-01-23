@@ -108,6 +108,10 @@ span.icon-action-section {
 }
 
 @media screen and (max-device-width: 320px) {
+  select:focus, textarea:focus, input:focus {
+    font-size: 16px;
+    background:#eee;
+  }
   body {
     width: 320px;
     padding: 5px;
