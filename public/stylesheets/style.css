@@ -114,6 +114,9 @@ span.icon-action-section {
   .add-category-input input {
     width: 280px;
   }
+  .add-item-input input {
+    width: 240px;
+  }
 
   #shopping-lists-container {
     display: block;
