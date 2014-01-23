@@ -16,7 +16,7 @@ h2.list-view-title {
 #shopping-lists-container {
   display: inline;
   height: 100%;
-  width: auto;
+  width: 100%;
 }
 
 .shopping-list-block {
@@ -39,8 +39,8 @@ span.list-description {
   top:50%;
   left: 0;
   margin-top:-.5em;
-  width: 10em;
-  height:10em;
+/*  width: 10em;
+  height:10em; */
   vertical-align: middle;
   text-align: center;
 }
@@ -104,19 +104,21 @@ span.icon-action-section {
 }
 
 @media screen and (max-device-width: 320px) {
-  html {
-    width: 320px;
-  }
   body {
     width: 320px;
     padding: 5px;
   }
+  .wutchuneed {
+    width: 340px;
+  }
+  .add-category-input input {
+    width: 280px;
+  }
+
   #shopping-lists-container {
     display: block;
-    width: 320px;
   }
   #shopping-lists-index {
-    width: 600px;
   }
   .shopping-list-block {
     font-size: 1.6rem;
@@ -126,17 +128,16 @@ span.icon-action-section {
   }
   #shopping-list-details {
     width: 100%;
-    font-size: 3em;
     padding: 5px;
   }
   .list-description {
     /*font-size: 6.4rem;*/
   }
   li.shopping-list-category {
-    font-size: 4.8rem;
+    font-size: 2.8rem;
     /*background-color: lightgreen;*/
   }
   li.shopping-list-category-item {
-    font-size: 3.6rem;
+    font-size: 2.4rem;
   }
 }

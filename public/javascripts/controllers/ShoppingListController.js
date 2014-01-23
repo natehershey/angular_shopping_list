@@ -112,7 +112,7 @@ function ShoppingListController($scope, $http) {
     if ($scope.newCategoryName != "") {
       $scope.currentShoppingList.categories.push({
         description : $scope.newCategoryName,
-        empty : true,
+        empty : false,
         hideChildren : false,
         items : []
       });
