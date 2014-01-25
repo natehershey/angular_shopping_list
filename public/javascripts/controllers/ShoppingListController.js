@@ -117,6 +117,7 @@ function ShoppingListController($scope, $http) {
         items : []
       });
       $scope.updateShoppingList($scope.currentShoppingList);
+      $scope.newCategoryName = null;
       $scope.showAddCategory = false;
     } else {
       alert("Gotta have a name");
