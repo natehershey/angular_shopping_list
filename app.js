@@ -13,8 +13,8 @@ var schemas = require('./models/ShoppingList.js');
 var app = express();
 
 var Mongoose = require('mongoose');
-var db = Mongoose.createConnection('localhost', 'wutchuneed-dev');
-//var db = Mongoose.createConnection('mongodb://wutchuneed:TurtleFace@linus.mongohq.com:10077/wutchuneed-dev');
+// var db = Mongoose.createConnection('localhost', 'wutchuneed-dev');
+var db = Mongoose.createConnection('mongodb://wutchuneed:TurtleFace@linus.mongohq.com:10077/wutchuneed-dev');
 
 var ItemSchema = schemas.ItemSchema;
 var CategorySchema = schemas.CategorySchema;
