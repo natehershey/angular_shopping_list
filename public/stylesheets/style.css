@@ -1,9 +1,8 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-input {
+div.wutchuneed {
   font-size: 16px;
 }
 
@@ -14,6 +13,7 @@ a.back-button-icon {
 }
 
 h2.list-view-title {
+  font-size: 3.0rem;
   width: 100%;
 }
 
@@ -27,7 +27,7 @@ h2.list-view-title {
   top:50%;
   width: 40%;
   height: 200px;
-  margin-top: -5em;
+  margin-top: -5rem;
   position: relative;
   margin: 5px;
   display: inline-block;
@@ -36,18 +36,18 @@ h2.list-view-title {
   border-radius:25px;
   padding: 10px;
   overflow: auto;
-  font-size: 2em;
+  font-size: 2rem;
 }
-span.list-description {
+/*span.list-description {
   position:absolute;
   top:50%;
   left: 0;
-  margin-top:-.5em;
-/*  width: 10em;
-  height:10em; */
+  margin-top:-.5rem;
+  width: 10em;
+  height:10em;
   vertical-align: middle;
   text-align: center;
-}
+}*/
 
 ul.shopping-lists,
 ul.shopping-list-categories,
@@ -100,42 +100,68 @@ span.icon-action-section {
   opacity: 0.20;
 }
 
-@media screen and (max-device-width: 320px) {
+span.shopping-list-description, .shopping-list-details > .icon-action-section {
+    font-size: 3.0rem;
+  }
+}
+span.category-name, .shopping-list-category > .icon-action-section {
+  font-size: 2.8rem;
+}
+
+span.item-description, .shopping-list-category-item > .icon-action-section {
+  font-size: 2.4rem;
+}
+
+@media screen and (max-device-width: 640px) {
+  html {
+    font-size: 32px !important;
+  }
   body {
     padding: 5px;
   }
-  select, textarea, input {
-    font-size: 1.6em;
+  h2.list-view-title {
+    font-size: 2rem;
+  }
+  .wutchuneed-input {
+    font-size: 1.8rem;
     background:#eee;
   }
-  .wutchuneed {
-    width: 340px;
-  }
-  .add-category-input input {
-    width: 260px;
-  }
-  .add-item-input input {
-    width: 220px;
+  div.add-new-list {
+    font-size: 2rem;
   }
 
+  button.add-new-list-button {
+    font-size: 1.4rem;
+    margin  : 1rem;
+  }
+
+  .add-new-list > textarea {
+    font-size: 1.8rem;
+  }
   #shopping-lists-container {
     display: block;
   }
   #shopping-lists-index {
   }
   .shopping-list-block {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     font-weight: 700;
-    width: 46%;
-    height: 100px;
+    width: 40%;
+    height: 200px;
+    margin: 2%;
   }
   .shopping-list-details {
     width: 100%;
     padding: 5px;
   }
-   span.shopping-list-description, .shopping-list-details > .icon-action-section {
+  span.shopping-list-description, .shopping-list-details > .icon-action-section {
       font-size: 3.0rem;
     }
+  }
+  .shopping-list-details button {
+    font-size: 1.6rem;
+    margin-left: 5px;
+    padding: 6px 18px;
   }
   span.category-name, .shopping-list-category > .icon-action-section {
     font-size: 2.8rem;

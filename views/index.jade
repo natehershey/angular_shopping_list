@@ -13,12 +13,13 @@ block content
         div.shopping-list-block(ng-repeat="list in shoppingLists" ng-click="showShoppingList(list._id)")
           span.list-description
             {{list.description}}
-      h2 Add New
-      form(novalidate, ng-submit="addNewShoppingList()")
-        textarea( ng-model="newShoppingList.description",
-                  placeholder="Description")
-        br
-        button.btn.btn-primary(type="submit") Add List
+      div.add-new-list
+        p Add New
+        form(novalidate, ng-submit="addNewShoppingList()")
+          textarea.wutchuneed-input( ng-model="newShoppingList.description",
+                                      placeholder="Description")
+          br
+          button.btn.btn-primary.add-new-list-button(type="submit") Add List
 
 
     div.well#shopping-list-details(ng-show="currentShoppingList != undefined")
@@ -35,13 +36,13 @@ block content
           a.change-name-icon
             i.fa.fa-pencil-square-o(ng-click="toggleChangeNameField()")
           span.change-name-input(ng-show="showChangeName")
-            input(ng-model="newListName")
-            button.btn.btn-primary(ng-click="changeListName()") +
+            input.wutchuneed-input(ng-model="newListName")
+            button.btn.btn-primary.wutchuneed-input-button(ng-click="changeListName()") +
         span.add-category-section.icon-action-section
           a.add-category-icon
             i.fa.fa-plus-circle(ng-click="toggleAddCategoryField()")
           span.add-category-input(ng-show="showAddCategory")
-            input(ng-model="newCategoryName")
+            input.wutchuneed-input(ng-model="newCategoryName")
             button.btn.btn-primary(ng-click="addCategory()") +
 
         span.shopping-list-categories-container
@@ -56,13 +57,13 @@ block content
                 a.change-category-name-icon
                   i.fa.fa-pencil-square-o(ng-click="toggleChangeCategoryNameField(category)")
                 span.change-category-name-input(ng-show="showChangeCategoryName && currentCategory._id === category._id")
-                  input(ng-model="currentCategory.newName")
+                  input.wutchuneed-input(ng-model="currentCategory.newName")
                   button.btn.btn-primary(ng-click="changeCategoryName()") +
               span.add-item-section.icon-action-section
                 a.add-item-icon
                   i.fa.fa-plus-circle(ng-click="toggleAddItemField(category)")
                 span.add-item-input(ng-show="showAddItem && currentCategory._id === category._id")
-                  input(ng-model="newItemName")
+                  input.wutchuneed-input(ng-model="newItemName")
                   button.btn.btn-primary(ng-click="addItem(newItemName)") +
               span.category-items-section
                 ul.shopping-list-category-items
@@ -75,7 +76,7 @@ block content
                       a.change-item-name-icon
                         i.fa.fa-pencil-square-o(ng-click="toggleChangeItemNameField(category, item)")
                       span.change-item-name-input(ng-show="showChangeItemName && currentItem._id === item._id")
-                        input(ng-model="currentItem.newName")
+                        input.wutchuneed-input(ng-model="currentItem.newName")
                         button.btn.btn-primary(ng-click="changeItemName()") +
 
 
