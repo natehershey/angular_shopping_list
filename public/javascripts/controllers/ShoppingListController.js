@@ -157,7 +157,7 @@ function ShoppingListController($scope, $http) {
     });
   };
 
-  $scope.addItem = function(name) {
+  $scope.addItem = function(category, name) {
     if (name) {
       $scope.currentCategory.items.push({
         description : name,
