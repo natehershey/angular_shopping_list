@@ -126,10 +126,18 @@ span.item-description, .shopping-list-category-item > .icon-action-section {
     font-size: 1.8rem;
     background:#eee;
   }
+  div.no-lists > span {
+    font-size: 1.6rem;
+    margin-left: 2rem;
+    padding: 0 1em 0 1em;
+    background-color: pink;
+  }
   div.add-new-list {
     font-size: 2rem;
   }
-
+  div.add-new-list > form{
+    padding-left: 2rem;
+  }
   button.add-new-list-button {
     font-size: 1.4rem;
     margin  : 1rem;

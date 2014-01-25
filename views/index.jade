@@ -10,11 +10,13 @@ block content
     div.well#shopping-lists-index(ng-show="currentShoppingList == undefined")
       h2.list-view-title Choose a list:
       div.shopping-lists#shopping-lists-container
+        div.no-lists(ng-show="shoppingLists.length == 0")
+          span No lists found
         div.shopping-list-block(ng-repeat="list in shoppingLists" ng-click="showShoppingList(list._id)")
           span.list-description
             {{list.description}}
       div.add-new-list
-        p Add New
+        span Add New
         form(novalidate, ng-submit="addNewShoppingList()")
           textarea.wutchuneed-input( ng-model="newShoppingList.description",
                                       placeholder="Description")
