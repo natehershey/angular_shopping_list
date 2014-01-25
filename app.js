@@ -14,7 +14,7 @@ var app = express();
 
 var Mongoose = require('mongoose');
 // var db = Mongoose.createConnection('localhost', 'wutchuneed-dev');
-var db = Mongoose.createConnection('mongodb://wutchuneed:TurtleFace@linus.mongohq.com:10077/wutchuneed-dev');
+var db = Mongoose.createConnection('mongodb://wutchuneed:TurtleFace@troup.mongohq.com:10093/wutchuneed-hq');
 
 var ItemSchema = schemas.ItemSchema;
 var CategorySchema = schemas.CategorySchema;
