@@ -26,7 +26,8 @@ block content
         a.back-button-icon
           i.fa.fa-arrow-circle-left(ng-click="clearCurrentList()")
 
-      span.shopping-list-description {{currentShoppingList.description}}
+      span.shopping-list-details
+        span.shopping-list-description {{currentShoppingList.description}}
         span.delete-list-section.icon-action-section
           a.delete-list-icon
             i.fa.fa-trash-o(ng-click="deleteShoppingList(currentShoppingList._id)")
@@ -65,13 +66,14 @@ block content
                   button.btn.btn-primary(ng-click="addItem(newItemName)") +
               span.category-items-section
                 ul.shopping-list-category-items
-                  li.shopping-list-category-item(ng-repeat="item in category.items" ng-click="cycleItemStatus(item, category)" ng-class="item.status") {{item.description}}
+                  li.shopping-list-category-item(ng-repeat="item in category.items" ng-class="item.status")
+                    span.item-description(ng-click="cycleItemStatus(item, category)") {{item.description}}
                     span.delete-item-section.icon-action-section
                       a.delete-item-icon
                         i.fa.fa-trash-o(ng-click="deleteItem(category, item)")
                     span.change-item-name-section.icon-action-section
                       a.change-item-name-icon
-                        i.fa.fa-pencil-square-o(ng-click="toggleChangeItemNameField(item)")
+                        i.fa.fa-pencil-square-o(ng-click="toggleChangeItemNameField(category, item)")
                       span.change-item-name-input(ng-show="showChangeItemName && currentItem._id === item._id")
                         input(ng-model="currentItem.newName")
                         button.btn.btn-primary(ng-click="changeItemName()") +

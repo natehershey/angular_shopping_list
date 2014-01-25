@@ -55,13 +55,6 @@ ul.shopping-list-category-items {
   list-style-type: none;
 }
 
-.main-shopping-list-description {
-  font-size: 3.2rem;
-}
-
-div.well.shopping-list-details {
-  /*background-color: pink;*/
-}
 .shopping-list-description {
   font-size: 3.2rem;
 }
@@ -108,22 +101,21 @@ span.icon-action-section {
 }
 
 @media screen and (max-device-width: 320px) {
-  select:focus, textarea:focus, input:focus {
-    font-size: 16px;
-    background:#eee;
-  }
   body {
-    width: 320px;
     padding: 5px;
+  }
+  select, textarea, input {
+    font-size: 1.6em;
+    background:#eee;
   }
   .wutchuneed {
     width: 340px;
   }
   .add-category-input input {
-    width: 280px;
+    width: 260px;
   }
   .add-item-input input {
-    width: 240px;
+    width: 220px;
   }
 
   #shopping-lists-container {
@@ -137,18 +129,19 @@ span.icon-action-section {
     width: 46%;
     height: 100px;
   }
-  #shopping-list-details {
+  .shopping-list-details {
     width: 100%;
     padding: 5px;
   }
-  .list-description {
-    /*font-size: 6.4rem;*/
+   span.shopping-list-description, .shopping-list-details > .icon-action-section {
+      font-size: 3.0rem;
+    }
   }
-  li.shopping-list-category {
+  span.category-name, .shopping-list-category > .icon-action-section {
     font-size: 2.8rem;
-    /*background-color: lightgreen;*/
   }
-  li.shopping-list-category-item {
+
+  span.item-description, .shopping-list-category-item > .icon-action-section {
     font-size: 2.4rem;
   }
 }

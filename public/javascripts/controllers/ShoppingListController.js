@@ -213,6 +213,16 @@ function ShoppingListController($scope, $http) {
     $scope.showChangeCategoryName = toggled;
     $scope.currentCategory = category;
   };
+
+  $scope.toggleChangeItemNameField = function(category, item) {
+    var toggled = !$scope.showChangeItemName;
+    $scope.hideAllInputs();
+    $scope.clearAllInputs();
+    $scope.updatedItemName = null;
+    $scope.showChangeItemName = toggled;
+    $scope.currentCategory = category;
+    $scope.currentItem = item;
+  };
   $scope.toggleAddItemField = function(category) {
     var toggled = !$scope.showAddItem;
     $scope.hideAllInputs();
@@ -220,13 +230,13 @@ function ShoppingListController($scope, $http) {
     $scope.showAddItem = toggled;
     $scope.currentCategory = category;
   };
-  $scope.toggleChangeItemNameField = function(item) {
-    var toggled = !$scope.showChangeItemName;
-    $scope.hideAllInputs();
-    $scope.clearAllInputs();
-    $scope.showChangeItemName = !$scope.showChangeItemName;
-    $scope.currentItem = item;
-  };
+  // $scope.toggleChangeItemNameField = function(item) {
+  //   var toggled = !$scope.showChangeItemName;
+  //   $scope.hideAllInputs();
+  //   $scope.clearAllInputs();
+  //   $scope.showChangeItemName = !$scope.showChangeItemName;
+  //   $scope.currentItem = item;
+  // };
 
   $scope.findCurrentCategoryIndex = function() {
     return $scope.findCategoryIndexByName($scope.currentCategory);
