@@ -95,7 +95,6 @@ function ensureAuthenticated(req, res, next) {
 };
 
 function checkEmail(req) {
-  debugger;
   emails = req.session.passport.user.emails;
   for (var i=0; i<emails.length; i++) {
     if (emails[i].value == "natehershey@gmail.com" || emails[i].value == "becky.hoppe@gmail.com") {

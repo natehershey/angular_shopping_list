@@ -3,8 +3,10 @@ var GoogleStrategy = require('passport-google').Strategy;
 // var config = require('./oauth.js');
 
 module.exports = passport.use(new GoogleStrategy({
-  returnURL: 'http://localhost:3000/auth/google/callback',
-  realm: 'http://localhost:3000'
+  // returnURL: 'http://localhost:3000/auth/google/callback',
+  // realm: 'http://localhost:3000'
+  returnURL: 'http://wutchuneed.herokuapp.com/auth/google/callback',
+  realm: 'http://wutchuneed.herokuapp.com'
 },
 function(identifier, profile, done) {
   process.nextTick(function () {
