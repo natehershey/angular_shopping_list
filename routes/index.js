@@ -1,4 +1,3 @@
-
 /*
  * GET home page.
  */
@@ -79,18 +78,6 @@ exports.updateList = function(ShoppingList) {
       }
       res.json({ shoppingList : shoppingList });
     });
-    // var newList = req.body.shoppingList;
-    // var id = newList._id;
-    // delete newList._id;
-    // ShoppingList.update({ _id: id }, newList, function (err, numberAffected, raw) {
-    //   if (err) {
-    //     res.json({ error : err });
-    //   } else {
-    //     res.json({ updated : true});
-    //   }
-    //   console.log('The number of updated documents was %d', numberAffected);
-    //   console.log('The raw response from Mongo was ', raw);
-    // });
   };
 };
 

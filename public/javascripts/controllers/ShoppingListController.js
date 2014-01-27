@@ -41,7 +41,7 @@ function ShoppingListController($scope, $http) {
   };
 
   $scope.addNewShoppingList = function() {
-    if($scope.newShoppingList.description != '') {
+    if($scope.newShoppingList.description !== '') {
       $http.post('/shopping_list', $scope.newShoppingList).success(function(data) {
         if (data.shoppingList) {
           $scope.shoppingLists.push(data.shoppingList);
@@ -262,7 +262,6 @@ function ShoppingListController($scope, $http) {
         num_items,
         cat_index;
 
-    debugger;
     cat_index = $scope.findCategoryIndexByName($scope.currentCategory);
     num_items = $scope.currentShoppingList.categories[cat_index].items.length;
     for (i; i<num_items; i++) {
@@ -277,7 +276,6 @@ function ShoppingListController($scope, $http) {
   $scope.findItemIndexByCategoryAndName = function(category, item) {
     var cat_index,
         i=0;
-    debugger;
     catIndex = $scope.findCategoryIndexByName(category);
     itemsLength = $scope.currentShoppingList.categories[cat_index].items.length;
     for (i; i<itemsLength; i++) {

@@ -18,11 +18,10 @@ block content
       div.add-new-list
         span Add New
         form(novalidate, ng-submit="addNewShoppingList()")
-          textarea.wutchuneed-input( ng-model="newShoppingList.description",
-                                      placeholder="Description")
+          textarea.wutchuneed-input(ng-model="newShoppingList.description",
+                                    placeholder="Description")
           br
           button.btn.btn-primary.add-new-list-button(type="submit") Add List
-
 
     div.well#shopping-list-details(ng-show="currentShoppingList != undefined")
       div.back-button-section.icon-action-section
