@@ -48,7 +48,7 @@ block content
 
         span.shopping-list-categories-container
           ul.shopping-list-categories
-            li.shopping-list-category(ng-repeat="category in currentShoppingList.categories" ng-class="{empty: category.empty, 'hide-children': category.hideChildren}")
+            li.shopping-list-category(ng-repeat="category in currentShoppingList.categories | orderBy: 'description'" ng-class="{empty: category.empty, 'hide-children': category.hideChildren}")
               span.category-name(ng-click="toggleHideChildren(category)")
                 {{category.description}}
               span.delete-category-section.icon-action-section
@@ -68,7 +68,7 @@ block content
                   button.btn.btn-primary(ng-click="addItem(category, newItemName)") +
               span.category-items-section
                 ul.shopping-list-category-items
-                  li.shopping-list-category-item(ng-repeat="item in category.items" ng-class="item.status")
+                  li.shopping-list-category-item(ng-repeat="item in category.items | orderBy: 'description'" ng-class="item.status")
                     span.item-description(ng-click="cycleItemStatus(item, category)") {{item.description}}
                     span.delete-item-section.icon-action-section
                       a.delete-item-icon
