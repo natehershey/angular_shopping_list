@@ -6,7 +6,6 @@ var ItemSchema = new Mongoose.Schema({
   measure : {type : String },
   status : {type : String }
 });
-
 exports.ItemSchema = ItemSchema;
 
 var CategorySchema = new Mongoose.Schema({
@@ -23,6 +22,13 @@ var ShoppingListSchema = new Mongoose.Schema({
 });
 
 exports.ShoppingListSchema = ShoppingListSchema;
+
+var UserSchema = new Mongoose.Schema({
+  oauthID: Number,
+  name: String
+});
+
+exports.UserSchema = UserSchema;
 
 // var Item = Mongoose.model('items', ItemSchema);
 // var Category = Mongoose.model('categories', CategorySchema)
